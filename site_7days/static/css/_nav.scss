@@ -1,0 +1,10 @@
+nav {
+  background-color: var(--primary_bg);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  a, button {
+    color: var(--light_text);
+    font-size: 1.6em;
+  }
+}

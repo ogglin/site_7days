@@ -1,0 +1,142 @@
+.light-theme {
+  --base_text: #080808;
+  --light_text: #FFFFFF;
+  --primary: #337ab7;
+  --primary_bg: #0277bd;
+  --info: #a8d8ff;
+  --info_bg: #039be5;
+  --accent: #f58d2c;
+  --accent_bg: #fdf4ee;
+  --warning: #ac2925;
+  --warning_bg: #d9534f;
+  --warning_hover: #c9302c;
+  --white: #FFFFFF;
+  --link: #337ab7;
+  --link_hover: #23527c;
+}
+
+* {
+  outline: none;
+}
+
+body {
+  font-size: 12px;
+  margin: 0;
+  font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+}
+
+.wrap_grid {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: 10em auto 1fr auto;
+}
+
+a, button {
+  cursor: pointer;
+  color: var(--link);
+}
+a:hover, button:hover {
+  color: var(--link_hover);
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details {
+  font-size: 1.1em;
+  line-height: 1.4em;
+  margin: 0.5em 0;
+}
+
+details > summary {
+  list-style: none;
+  cursor: pointer;
+  font-size: 1.6em;
+  font-weight: 600;
+  color: var(--primary);
+}
+details > summary:hover {
+  color: var(--accent);
+}
+
+main {
+  display: grid;
+  grid-template-columns: 20em 1fr;
+  grid-gap: 1em;
+}
+
+.btn_filter {
+  display: none;
+  font-size: 1.6em;
+  margin: 50% auto;
+}
+
+header {
+  background-color: var(--info_bg);
+  display: grid;
+  grid-gap: 1em;
+  grid-template-columns: 200px 1fr;
+}
+header .logotype {
+  padding: 0.8em 0 0 0.9em;
+}
+header .logotype img {
+  max-width: 100%;
+}
+
+nav {
+  background-color: var(--primary_bg);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+nav a, nav button {
+  color: var(--light_text);
+  font-size: 1.6em;
+}
+
+aside .categories {
+  font-size: 1.4em;
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+}
+aside .categories a, aside .categories button {
+  font-size: 1em;
+  padding: 0.2em 0.4em;
+  margin: 0.2em 0;
+  border: 0.1em solid var(--link_hover);
+  text-decoration: none;
+  transition: 0.5s all ease;
+  box-shadow: 0 0 0.04em 0.02em var(--base_text);
+}
+aside .categories a:hover, aside .categories a.active, aside .categories button:hover, aside .categories button.active {
+  color: var(--light_text);
+  background-color: var(--info_bg);
+}
+
+@media all and (max-width: 800px) {
+  aside {
+    width: 0;
+    overflow: hidden;
+    transition: 0.3s all ease-in-out;
+  }
+  aside.active {
+    width: 25em;
+  }
+}
+@media all and (max-width: 800px) {
+  main {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 1em;
+    overflow-x: hidden;
+  }
+
+  .btn_filter {
+    display: flex;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

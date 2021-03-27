@@ -1,0 +1,72 @@
+@import "colors.scss";
+* {outline: none}
+body {
+  font-size: 12px;
+  margin: 0;
+  font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+}
+.wrap_grid {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: 10em auto 1fr auto;
+}
+a, button {
+  cursor: pointer;
+  color: var(--link);
+  &:hover {
+    color: var(--link_hover);
+  }
+}
+details summary::-webkit-details-marker {
+  display: none
+}
+
+details {
+  font-size: 1.1em;
+  line-height: 1.4em;
+  margin: .5em 0;
+}
+
+details > summary {
+  list-style: none;
+  cursor: pointer;
+  font-size: 1.6em;
+  font-weight: 600;
+  color: var(--primary);
+  &:hover {
+    color: var(--accent);
+  }
+}
+
+details[open] {
+
+}
+
+main {
+  display: grid;
+  grid-template-columns: 20em 1fr;
+  grid-gap: 1em;
+}
+
+.btn_filter {
+  display: none;
+  font-size: 1.6em;
+  margin: 50% auto;
+}
+
+@import "header.scss";
+@import "nav.scss";
+@import "aside.scss";
+@import "footer.scss";
+
+@media all and (max-width: 800px) {
+  main {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 1em;
+    overflow-x: hidden;
+  }
+  .btn_filter {
+    display: flex;
+  }
+}

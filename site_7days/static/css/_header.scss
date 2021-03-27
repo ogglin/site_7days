@@ -1,0 +1,12 @@
+header {
+  background-color: var(--info_bg);
+  display: grid;
+  grid-gap: 1em;
+  grid-template-columns: 200px 1fr;
+  .logotype {
+    padding: .8em 0 0 .9em;
+    img {
+      max-width: 100%;
+    }
+  }
+}

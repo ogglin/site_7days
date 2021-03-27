@@ -1,0 +1,18 @@
+.light-theme {
+  --base_text: #080808;
+  --light_text: #FFFFFF;
+  --primary: #337ab7;
+  --primary_bg: #0277bd;
+  --info: #a8d8ff;
+  --info_bg: #039be5;
+  --accent: #f58d2c;
+  --accent_bg: #fdf4ee;
+  --warning: #ac2925;
+  --warning_bg: #d9534f;
+  --warning_hover: #c9302c;
+  --white: #FFFFFF;
+  --link: #337ab7;
+  --link_hover: #23527c;
+}
+
+/*# sourceMappingURL=_colors.css.map */

@@ -1,0 +1,33 @@
+aside {
+  .categories {
+    font-size: 1.4em;
+    padding: .5em;
+    display: flex;
+    flex-direction: column;
+
+    a, button {
+      font-size: 1em;
+      padding: .2em .4em;
+      margin: .2em 0;
+      border: .1em solid var(--link_hover);
+      text-decoration: none;
+      transition: .5s all ease;
+      box-shadow: 0 0 .04em .02em var(--base_text);
+      &:hover, &.active {
+        color: var(--light_text);
+        background-color: var(--info_bg);
+      }
+    }
+  }
+}
+
+@media all and (max-width: 800px){
+  aside {
+    width: 0;
+    overflow: hidden;
+    transition: .3s all ease-in-out;
+    &.active {
+      width: 25em;
+    }
+  }
+}

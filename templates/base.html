@@ -1,0 +1,132 @@
+{% load static compress i18n %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {% block description %}
+        <meta name="description" content="Издание русскоязычного сообщества в Chicago. RU новости, статьи,
+        аналитика событий в США и мире с точки зрения русскоязычных американцев.">
+    {% endblock %}
+    {% block keyword %}
+        <meta name="keyword" content="russian chicago, русский чикаго, онлайн, illinois, иллинойс, russians in US,
+        America, русские в Америке, Америка, community, община, ью-Йорк, NYC, New York,  LosAngeles-Ru, Лос Анджелес,
+        Los Angeles, communication, online, смотреть, фото, мюзикл, пожарные, фильм, полиция, общение, search, поиск,
+        news, новости, chat, чат, green card, зелёная карта, вид на жительство, music, музыка, sport, спорт, evens,
+        события, chicagoru, russkiy, по-русски, афиша, writers, писатели, русскоязычный, русскоязычная, русскоязычное,
+        russian speaking, press, пресса, radio, радио, tv, тв, телевидение, exebitions, выставки, chilouts, тусовки,
+        hobbies, увлечения, personal pages, персональные страницы, форум, forum, Чикаго.Ру, newspapers, газеты, журналы,
+        magazines, выставки, exebitions, musium, musiums, музеи, музей, концерт, концерты, concert, concerts, бизнес,
+        business, деловой, night clubs, ночные клубы, ночной клуб, restaurants, рестораны, кафе, cafe, магазин, магазины,
+        store, stores, продукты, food, гастроном, deli, базар, market, clothing, одежда, деньги, money, books, книги,
+        video, видео, audio, аудио, dating, знакомства, юноши, девушки, мужчины, женщины, мальчики, девочки, women,
+        men, boys, girls, голые девки, проститутки, фотографии, photos, pictures, social nets, социальные сети, Россия,
+        Russia, Москва, Moscow, Украина, Ukraine, Киев, Kiev, украинский, Беларусь, Belarus, Минск, Minsk, беларусский,
+        Литва, Lietuva, Вильнюс, литовский, Латвия, Latvija, Рига, латышский, Эстония, Eesti, Таллинн, эстонский,
+        Молдавия, Moldova, Кишинёв, молдавский, Грузия, Georgia, Тбилиси, грузинский, Армения, Armenia, Հայաստան,
+        Ереван, армянский, Азербайджан, Azərbaycan, Баку, азербайджанский, Казахстан, Қазақстан, Астана, казахский,
+        Узбекистан, O`zbekiston, Ташкент, узбекский, Туркмения, Türkmenistan, Ашхабад, туркменский, Таджикистан,
+        تاجیکستان‎, Душанбе, таджикский, Киргизия, Кыргызстан, Бишкек, киргизский, скачать, сезон, сериал, цены, bulls,
+        гарнстер, группа, купить, булс, blackhawks, bears, steel, university, of отзывы, prime, слушать, downtown,
+        одежда, футболка, бейсболка, толстовка, кепка, скачать, бесплатно, usa, сша, now, 1930, билеты, купить,
+        торрент, torrent">
+    {% endblock %}
+    {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'css/main.scss' %}">
+    {% endcompress %}
+    <script src="{% static 'js/vue.global.js' %}"></script>
+    <script src="{% static 'js/axios.min.js' %}"></script>
+    <title>
+        {% block title %}
+            7 Дней – новости Чикаго на русском, русский Чикаго, Russian Chicago, США, политика, события, аналитика,
+            работа в Чикаго
+        {% endblock %}
+    </title>
+</head>
+<body class="light-theme">
+{{ categories|json_script:"categoriesData" }}
+{{ classys|json_script:"classysData" }}
+{% verbatim %}
+<div class="wrap_grid" id="app">
+    <header>
+        <div class="logotype">
+            <a>
+                <img src="https://7days.us/vendor/img/logo7.png" alt="logotype">
+            </a>
+        </div>
+        <div>
+            <button @click="showCats()" class="btn_filter">Категории</button>
+        </div>
+    </header>
+    <nav>
+    </nav>
+    <main>
+        <aside id="aside">
+            <div id="categories" class="categories">
+                <button v-for="cat in categories"
+                        @click="filterCat(cat.id, cat.description)"
+                        :class="btn_cat"
+                        :id="'btn_cat'+cat.id"
+                        :value="cat.id">{{ cat.description }}
+                </button>
+            </div>
+        </aside>
+        <section>
+            <h1>Частные объявления <small>{{ categoryName }}: {{ classys.length }}</small></h1>
+            <h4>Ищете работу? Хотите познакомиться? Хотите снять квартиру? Просмотрите наши объявления.
+                Ищете сотрудников? Хотите сдать квартиру в рент? Разместите свое объявление.</h4>
+            <details>
+                <summary>Подать объявление</summary>
+                <h3>Правила подачи объявлений</h3>
+                <h4>Объявления можно подавать и оплачивать любым из следующих способов:</h4>
+                <ol>
+                    <li>Заполните купон из газеты, вложите в конверт вместе с чеком или money order на имя Ethnic Media
+                        и отправьте почтой по адресу: Ethnic Media, 25 Telser, P.O. Box 261, Lake Zurich, IL 60047
+                        Отправьте объявление текстовым сообщением на номер 312-999-0609, в тексте укажите количество
+                        выходов (сколько недель публиковать объявление) и Ваш контактный телефон. Сотрудник редакции
+                        перезвонит Вам в течение ближайшего рабочего дня и примет оплату.
+                    </li>
+                    <li>Отправьте объявление по ЭЛЕКТРОННОЙ ПОЧТЕ на info@ethnicmedia.us, укажите количество выходов
+                        (сколько недель публиковать объявление) и Ваш контактный телефон. Сотрудник редакции перезвонит
+                        Вам в течение ближайшего рабочего дня и примет оплату.
+                    </li>
+                    <li>Отправьте текст объявления по факсу 866-710-0220, укажите количество выходов (сколько недель
+                        публиковать объявление) и Ваш контактный телефон. Сотрудник редакции перезвонит Вам в течение
+                        ближайшего рабочего дня и примет оплату.
+                    </li>
+                </ol>
+                <h4>Общие правила для раздела “Объявления”</h4>
+                <ul>
+                    <li>Стоимость объявления в одном номере газеты: 50¢ за слово.</li>
+                    <li>Номер телефона считается как за одно слово.</li>
+                    <li>Слова, выделенные жирными или ЗАГЛАВНЫМИ буквами: 60¢ за слово.</li>
+                    <li>Если вы хотите поместить свое объявление в нескольких номерах, то сумму умножьте на количество
+                        публикаций.</li>
+                    <li>Фотография в объявлении: $5.</li>
+                    <li>Объявление в рамке: $5 за модуль (1”х1,5”)</li>
+                </ul>
+                <h4>Поздравление с праздником (день рождения, юбилей, свадьба) в рамке (текст и фотография) - от 10
+                    долларов, в зависимости от размера объявления. Некрологи, соболезнования (текст и фотография),
+                    публикуются БЕСПЛАТНО</h4>
+            </details>
+            <hr>
+            <div v-for="classy in classys" :class="['cl_item', classy.categories_id]" :id="'cl_' + classy.id">
+                <span class="date"><span class="material-icons">date_range</span>{{ classy.created }}</span>
+                <p>{{ classy.newspaper_content }}</p>
+            </div>
+            <hr>
+        </section>
+    </main>
+    <footer>
+    </footer>
+</div>
+{% endverbatim %}
+<script src="{% static 'js/app.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+{% block ajaxjs %}
+{% endblock %}
+</body>
+</html>

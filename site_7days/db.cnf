@@ -1,0 +1,5 @@
+[client]
+database = core
+user = core_api_any
+password = timAnoch
+default-character-set = utf8
