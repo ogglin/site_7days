@@ -48,24 +48,51 @@
 <body class="light-theme">
 {{ categories|json_script:"categoriesData" }}
 {{ classys|json_script:"classysData" }}
+{{ lang|json_script:"lang" }}
 {% verbatim %}
 <div class="wrap_grid" id="app">
     <header>
         <div class="logotype">
-            <a>
-                <img src="https://7days.us/vendor/img/logo7.png" alt="logotype">
-            </a>
+            <img src="/static/img/logo300x300.png" alt="logotype">
         </div>
-        <div>
-            <button @click="showCats()" class="btn_filter">Категории</button>
+        <div class="actions">
+            <button v-if="lang == 'ru'" @click="changeLang()" class="btn_lang"><span
+                    class="material-icons">language</span> EN
+            </button>
+            <button v-if="lang == 'en'" @click="changeLang()" class="btn_lang"><span
+                    class="material-icons">language</span> RU
+            </button>
+            <button @click="showCats()" v-if="lang == 'ru'" class="btn_filter">Категории</button>
+            <button @click="showCats()" v-if="lang == 'en'" class="btn_filter">Category</button>
         </div>
     </header>
-    <nav>
-    </nav>
     <main>
         <aside id="aside">
+            <nav>
+                <div class="logotype">
+                    <img src="/static/img/logo300x300.png" alt="logotype">
+                </div>
+                <div>
+                    <button v-if="lang == 'ru'" @click="changeLang()" class="btn_lang"><span class="material-icons">language</span>
+                        EN
+                    </button>
+                    <button v-if="lang == 'en'" @click="changeLang()" class="btn_lang"><span class="material-icons">language</span>
+                        RU
+                    </button>
+                    <button @click="showCats()" v-if="lang == 'ru'" class="btn_filter">Категории</button>
+                    <button @click="showCats()" v-if="lang == 'en'" class="btn_filter">Category</button>
+                </div>
+            </nav>
             <div id="categories" class="categories">
-                <button v-for="cat in categories"
+                <button v-if="lang == 'en'"
+                        v-for="cat in categories"
+                        @click="filterCat(cat.id, cat.description)"
+                        :class="btn_cat"
+                        :id="'btn_cat'+cat.id"
+                        :value="cat.id">{{ cat.name }}
+                </button>
+                <button v-if="lang == 'ru'"
+                        v-for="cat in categories"
                         @click="filterCat(cat.id, cat.description)"
                         :class="btn_cat"
                         :id="'btn_cat'+cat.id"
@@ -74,43 +101,9 @@
             </div>
         </aside>
         <section>
-            <h1>Частные объявления <small>{{ categoryName }}: {{ classys.length }}</small></h1>
-            <h4>Ищете работу? Хотите познакомиться? Хотите снять квартиру? Просмотрите наши объявления.
-                Ищете сотрудников? Хотите сдать квартиру в рент? Разместите свое объявление.</h4>
-            <details>
-                <summary>Подать объявление</summary>
-                <h3>Правила подачи объявлений</h3>
-                <h4>Объявления можно подавать и оплачивать любым из следующих способов:</h4>
-                <ol>
-                    <li>Заполните купон из газеты, вложите в конверт вместе с чеком или money order на имя Ethnic Media
-                        и отправьте почтой по адресу: Ethnic Media, 25 Telser, P.O. Box 261, Lake Zurich, IL 60047
-                        Отправьте объявление текстовым сообщением на номер 312-999-0609, в тексте укажите количество
-                        выходов (сколько недель публиковать объявление) и Ваш контактный телефон. Сотрудник редакции
-                        перезвонит Вам в течение ближайшего рабочего дня и примет оплату.
-                    </li>
-                    <li>Отправьте объявление по ЭЛЕКТРОННОЙ ПОЧТЕ на info@ethnicmedia.us, укажите количество выходов
-                        (сколько недель публиковать объявление) и Ваш контактный телефон. Сотрудник редакции перезвонит
-                        Вам в течение ближайшего рабочего дня и примет оплату.
-                    </li>
-                    <li>Отправьте текст объявления по факсу 866-710-0220, укажите количество выходов (сколько недель
-                        публиковать объявление) и Ваш контактный телефон. Сотрудник редакции перезвонит Вам в течение
-                        ближайшего рабочего дня и примет оплату.
-                    </li>
-                </ol>
-                <h4>Общие правила для раздела “Объявления”</h4>
-                <ul>
-                    <li>Стоимость объявления в одном номере газеты: 50¢ за слово.</li>
-                    <li>Номер телефона считается как за одно слово.</li>
-                    <li>Слова, выделенные жирными или ЗАГЛАВНЫМИ буквами: 60¢ за слово.</li>
-                    <li>Если вы хотите поместить свое объявление в нескольких номерах, то сумму умножьте на количество
-                        публикаций.</li>
-                    <li>Фотография в объявлении: $5.</li>
-                    <li>Объявление в рамке: $5 за модуль (1”х1,5”)</li>
-                </ul>
-                <h4>Поздравление с праздником (день рождения, юбилей, свадьба) в рамке (текст и фотография) - от 10
-                    долларов, в зависимости от размера объявления. Некрологи, соболезнования (текст и фотография),
-                    публикуются БЕСПЛАТНО</h4>
-            </details>
+            <h1 v-if="lang == 'ru'">Частные объявления <small>{{ categoryName }}: {{ classys.length }}</small></h1>
+            <h1 v-if="lang == 'en'">Private classifieds <small>{{ categoryName }}: {{ classys.length }}</small></h1>
+            <div v-html="clHead"></div>
             <hr>
             <div v-for="classy in classys" :class="['cl_item', classy.categories_id]" :id="'cl_' + classy.id">
                 <span class="date"><span class="material-icons">date_range</span>{{ classy.created }}</span>

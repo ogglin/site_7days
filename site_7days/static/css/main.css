@@ -28,7 +28,7 @@ body {
 .wrap_grid {
   display: grid;
   min-height: 100vh;
-  grid-template-rows: 10em auto 1fr auto;
+  grid-template-rows: 1fr auto;
 }
 
 a, button {
@@ -69,33 +69,53 @@ main {
 .btn_filter {
   display: none;
   font-size: 1.6em;
-  margin: 50% auto;
+}
+
+.btn_lang {
+  font-size: 1.6em;
+  line-height: 1.8em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 header {
+  display: none;
   background-color: var(--info_bg);
-  display: grid;
-  grid-gap: 1em;
-  grid-template-columns: 200px 1fr;
-}
-header .logotype {
-  padding: 0.8em 0 0 0.9em;
-}
-header .logotype img {
-  max-width: 100%;
 }
 
+.logotype {
+  padding: 0.5em;
+}
+.logotype img {
+  width: 10em;
+  height: 10em;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+@media all and (max-width: 800px) {
+  header {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: 200px 1fr;
+  }
+}
 nav {
-  background-color: var(--primary_bg);
   display: flex;
   justify-content: space-evenly;
   align-items: center;
 }
-nav a, nav button {
-  color: var(--light_text);
-  font-size: 1.6em;
-}
 
+aside {
+  background-color: var(--info_bg);
+  min-height: 100vh;
+}
 aside .categories {
   font-size: 1.4em;
   padding: 0.5em;
@@ -121,12 +141,21 @@ aside .categories a:hover, aside .categories a.active, aside .categories button:
     width: 0;
     overflow: hidden;
     transition: 0.3s all ease-in-out;
+    min-height: 10em;
   }
   aside.active {
     width: 25em;
   }
+  aside nav {
+    display: none;
+  }
 }
 @media all and (max-width: 800px) {
+  .wrap_grid {
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+  }
+
   main {
     display: grid;
     grid-template-columns: auto 1fr;

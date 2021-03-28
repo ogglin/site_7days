@@ -8,7 +8,7 @@ body {
 .wrap_grid {
   display: grid;
   min-height: 100vh;
-  grid-template-rows: 10em auto 1fr auto;
+  grid-template-rows: 1fr auto;
 }
 a, button {
   cursor: pointer;
@@ -51,7 +51,14 @@ main {
 .btn_filter {
   display: none;
   font-size: 1.6em;
-  margin: 50% auto;
+}
+
+.btn_lang {
+  font-size: 1.6em;
+  line-height: 1.8em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @import "header.scss";
@@ -60,6 +67,10 @@ main {
 @import "footer.scss";
 
 @media all and (max-width: 800px) {
+  .wrap_grid {
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+  }
   main {
     display: grid;
     grid-template-columns: auto 1fr;

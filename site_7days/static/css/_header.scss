@@ -1,12 +1,27 @@
 header {
+  display: none;
   background-color: var(--info_bg);
-  display: grid;
-  grid-gap: 1em;
-  grid-template-columns: 200px 1fr;
-  .logotype {
-    padding: .8em 0 0 .9em;
-    img {
-      max-width: 100%;
-    }
+}
+
+.logotype {
+  padding: .5em;
+
+  img {
+    width: 10em;
+    height: 10em;
+  }
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+@media all and (max-width: 800px) {
+  header {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: 200px 1fr;
   }
 }

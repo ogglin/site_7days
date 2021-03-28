@@ -1,4 +1,6 @@
 aside {
+  background-color: var(--info_bg);
+  min-height: 100vh;
   .categories {
     font-size: 1.4em;
     padding: .5em;
@@ -26,8 +28,12 @@ aside {
     width: 0;
     overflow: hidden;
     transition: .3s all ease-in-out;
+    min-height: 10em;
     &.active {
       width: 25em;
+    }
+    nav {
+      display: none;
     }
   }
 }
