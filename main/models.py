@@ -32,6 +32,7 @@ class Advertise(models.Model):
     views = models.IntegerField()
     who_created = models.ForeignKey('User', models.DO_NOTHING, related_name='fk_advertise_created', db_column='who_created', blank=True, null=True)
     source = models.CharField(max_length=255, blank=True, null=True)
+    newspaper_content_en = models.TextField(blank=True, null=True)
 
     class Meta:
         managed = False

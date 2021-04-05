@@ -61,6 +61,20 @@ main {
   align-items: center;
 }
 
+.btn_link {
+  background-color: #efefef;
+  border-radius: .2em;
+  border: 1px solid #080808;
+  padding: 0 1.6em;
+  margin: 0 0 .3em 0;
+  display: block;
+
+  span {
+    font-size: 2em;
+    line-height: 1.2em;
+  }
+}
+
 @import "header.scss";
 @import "nav.scss";
 @import "aside.scss";

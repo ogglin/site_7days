@@ -56,6 +56,9 @@
             <img src="/static/img/logo300x300.png" alt="logotype">
         </div>
         <div class="actions">
+            <a href="https://play.google.com/store/apps/details?id=app.newspaper7days" class="btn_link" target="_blank">
+                <span class="material-icons">phone_android</span></a>
+
             <button v-if="lang == 'ru'" @click="changeLang()" class="btn_lang"><span
                     class="material-icons">language</span> EN
             </button>
@@ -73,6 +76,8 @@
                     <img src="/static/img/logo300x300.png" alt="logotype">
                 </div>
                 <div>
+                    <a href="https://play.google.com/store/apps/details?id=app.newspaper7days" class="btn_link" target="_blank">
+                        <span class="material-icons">phone_android</span></a>
                     <button v-if="lang == 'ru'" @click="changeLang()" class="btn_lang"><span class="material-icons">language</span>
                         EN
                     </button>
@@ -107,7 +112,8 @@
             <hr>
             <div v-for="classy in classys" :class="['cl_item', classy.categories_id]" :id="'cl_' + classy.id">
                 <span class="date"><span class="material-icons">date_range</span>{{ classy.created }}</span>
-                <p>{{ classy.newspaper_content }}</p>
+                <p v-if="lang == 'ru'">{{ classy.newspaper_content }}</p>
+                <p v-if="lang == 'en'">{{ classy.newspaper_content_en }}</p>
             </div>
             <hr>
         </section>
