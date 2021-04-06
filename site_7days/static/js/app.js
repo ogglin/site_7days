@@ -3,9 +3,7 @@ let data = {
     all_classys: JSON.parse(document.getElementById('classysData').textContent),
     lang: JSON.parse(document.getElementById('lang').textContent),
     projectID: 812923448506,
-    clHeadRu: `<h4>Ищете работу? Хотите познакомиться? Хотите снять квартиру? Просмотрите наши объявления.
-                    Ищете сотрудников? Хотите сдать квартиру в рент? Разместите свое объявление.</h4>
-                <details>
+    clHeadRu: `<details>
                     <summary>Подать объявление</summary>
                     <h3>Правила подачи объявлений</h3>
                     <h4>Объявления можно подавать и оплачивать любым из следующих способов:</h4>
@@ -32,6 +30,12 @@ let data = {
                             публиковать объявление) и Ваш контактный телефон. Сотрудник редакции перезвонит Вам в течение
                             ближайшего рабочего дня и примет оплату.
                         </li>
+                        <li><a href="https://play.google.com/store/apps/details?id=app.newspaper7days" target="_blank">
+                            <strong>Приложение для Android: </strong></a>
+                            В разделе Подать объявление заполните все поля.  Укажите количество выходов 
+                            (сколько недель публиковать объявление) и контактный телефон. Сотрудник редакции 
+                            перезвонит вам в течение ближайшего рабочего дня и примет оплату.
+                        </li>
                     </ol>
                     <h4>Общие правила для раздела “Объявления”</h4>
                     <ul>
@@ -48,10 +52,8 @@ let data = {
                         от $10, в зависимости от размера объявления. Некрологи, соболезнования (текст и фотография),
                         публикуются БЕСПЛАТНО</h4>
                 </details>`,
-    clHeadEn: `<h4>Looking for a job? Would you like to meet me? Do you want to rent an apartment? View our ads.
-                   Looking for employees? Do you want to rent an apartment? Place your ad.</h4>
-                <details>
-                    <summary>How do I place an ad in the 7 Days newspaper?</summary>
+    clHeadEn: `<details>
+                    <summary>How to place an ad?</summary>
                     <h3>Ads can be submitted and paid for in one of the following ways:</h3>
                     <h4>Объявления можно подавать и оплачивать любым из следующих способов:</h4>
                     <ol>
@@ -72,6 +74,12 @@ let data = {
                         </li>
                         <li><strong>Fax: </strong>
                             Fax the text of your ad to 866-710-0220, specify the number of issues (how many weeks to 
+                            publish your ad) and your contact phone number. One of out representatives will call you 
+                            back within the next business day and accept payment.
+                        </li>
+                        <li><a href="https://play.google.com/store/apps/details?id=app.newspaper7days" target="_blank">
+                            <strong>Android app: </strong></a>
+                            In Submit your ad, fill in all the fields. Specify the number of issues (how many weeks to 
                             publish your ad) and your contact phone number. One of out representatives will call you 
                             back within the next business day and accept payment.
                         </li>
@@ -162,6 +170,26 @@ const app = Vue.createApp({
                 this.lang = 'ru'
                 this.clHead = data.clHeadRu
             }
+            if (this.category_active === 0) {
+                if (this.lang === 'ru') {
+                    this.categoryName = 'Все'
+                } else {
+                    this.categoryName = 'All'
+                }
+            } else {
+                this.setCatName()
+            }
+        },
+        setCatName() {
+            this.categories.forEach(cat => {
+                if (this.category_active === cat.id) {
+                    if (this.lang === 'ru') {
+                        this.categoryName = cat.description
+                    } else {
+                        this.categoryName = cat.name
+                    }
+                }
+            });
         }
     }
 }).mount('#app');

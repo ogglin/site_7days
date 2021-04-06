@@ -57,13 +57,13 @@
         </div>
         <div class="actions">
             <a href="https://play.google.com/store/apps/details?id=app.newspaper7days" class="btn_link" target="_blank">
-                <span class="material-icons">phone_android</span></a>
+                <span class="material-icons">android</span></a>
 
             <button v-if="lang == 'ru'" @click="changeLang()" class="btn_lang"><span
-                    class="material-icons">language</span> EN
+                    class="material-icons">language</span> RU
             </button>
             <button v-if="lang == 'en'" @click="changeLang()" class="btn_lang"><span
-                    class="material-icons">language</span> RU
+                    class="material-icons">language</span> EN
             </button>
             <button @click="showCats()" v-if="lang == 'ru'" class="btn_filter">Категории</button>
             <button @click="showCats()" v-if="lang == 'en'" class="btn_filter">Category</button>
@@ -77,12 +77,12 @@
                 </div>
                 <div>
                     <a href="https://play.google.com/store/apps/details?id=app.newspaper7days" class="btn_link" target="_blank">
-                        <span class="material-icons">phone_android</span></a>
+                        <span class="material-icons">android</span></a>
                     <button v-if="lang == 'ru'" @click="changeLang()" class="btn_lang"><span class="material-icons">language</span>
-                        EN
+                        RU
                     </button>
                     <button v-if="lang == 'en'" @click="changeLang()" class="btn_lang"><span class="material-icons">language</span>
-                        RU
+                        EN
                     </button>
                     <button @click="showCats()" v-if="lang == 'ru'" class="btn_filter">Категории</button>
                     <button @click="showCats()" v-if="lang == 'en'" class="btn_filter">Category</button>
@@ -106,8 +106,8 @@
             </div>
         </aside>
         <section>
-            <h1 v-if="lang == 'ru'">Частные объявления <small>{{ categoryName }}: {{ classys.length }}</small></h1>
-            <h1 v-if="lang == 'en'">Private classifieds <small>{{ categoryName }}: {{ classys.length }}</small></h1>
+            <h1 v-if="lang == 'ru'">Объявления <small>{{ categoryName }}: {{ classys.length }}</small></h1>
+            <h1 v-if="lang == 'en'">Сlassifieds <small>{{ categoryName }}: {{ classys.length }}</small></h1>
             <div v-html="clHead"></div>
             <hr>
             <div v-for="classy in classys" :class="['cl_item', classy.categories_id]" :id="'cl_' + classy.id">
