@@ -124,6 +124,23 @@ const app = Vue.createApp({
             isActive: false
         }
     },
+    mounted: function () {
+        this.$nextTick(function () {
+            ads = document.getElementsByClassName('classy-text')
+            const regex = /\(?[- _]*(\d{3}[- _]*\)?([- _]*\d){7}|\d\d[- _]*\d\d[- _]*\)?([- _]*\d){6})/g;
+            for (let i = 0; i < ads.length; i++) {
+                phones = ads[i].innerHTML.match(regex)
+                if (phones) {
+                    $html = ads[i].innerHTML
+                    for (let j = 0; j < phones.length; j++) {
+                        $a = '<span class="showTel" role="cls_phone' + (i + j) + '"> показать телефон </span><a href="tel:' + phones[j] + '" id="cls_phone' + (i + j) + '">' + phones[j] + '</a>'
+                        $html = $html.replace(phones[j], $a)
+                    }
+                }
+                ads[i].innerHTML = $html
+            }
+        })
+    },
     methods: {
         filterCat(id, name) {
             btns = document.getElementsByClassName('btn_cat')
@@ -190,6 +207,26 @@ const app = Vue.createApp({
                     }
                 }
             });
+        },
+        getCookie(cookieName) {
+            let cookie = {};
+            document.cookie.split(';').forEach(function (el) {
+                let [key, value] = el.split('=');
+                cookie[key.trim()] = value;
+            })
+            return cookie[cookieName];
+        },
+        showTel(e) {
+            id = e.target.parentElement.parentElement.getAttribute('id').replace('cl_', '')
+            csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value
+            data = {id: id}
+            headers = {'Content-Type': 'application/json', 'X-CSRFToken': csrf}
+            axios.get('/?id=' + id, data, {headers: headers})
+        },
+        formatDate(v) {
+            if (!v) return ''
+            d = new Date(v)
+            return d.toLocaleString()
         }
     }
 }).mount('#app');

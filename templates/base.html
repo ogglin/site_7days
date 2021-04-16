@@ -49,6 +49,7 @@
 {{ categories|json_script:"categoriesData" }}
 {{ classys|json_script:"classysData" }}
 {{ lang|json_script:"lang" }}
+{% csrf_token %}
 {% verbatim %}
 <div class="wrap_grid" id="app">
     <header>
@@ -111,9 +112,12 @@
             <div v-html="clHead"></div>
             <hr>
             <div v-for="classy in classys" :class="['cl_item', classy.categories_id]" :id="'cl_' + classy.id">
-                <span class="date"><span class="material-icons">date_range</span>{{ classy.created }}</span>
-                <p v-if="lang == 'ru'">{{ classy.newspaper_content }}</p>
-                <p v-if="lang == 'en'">{{ classy.newspaper_content_en }}</p>
+                <div class="date">
+                    <span><span class="material-icons">date_range</span>{{ formatDate(classy.created) }}</span>
+                    <span><span class="material-icons">visibility</span>{{ classy.views }}</span>
+                </div>
+                <p v-if="lang == 'ru'" class="classy-text">{{ classy.newspaper_content }}</p>
+                <p v-if="lang == 'en'" class="classy-text">{{ classy.newspaper_content_en }}</p>
             </div>
             <hr>
         </section>
@@ -122,8 +126,18 @@
     </footer>
 </div>
 {% endverbatim %}
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
 <script src="{% static 'js/app.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
+
+<script>
+    $(".showTel").click(function (e) {
+        app.showTel(e)
+        $(this).toggle()
+        $id = $(this).attr('role')
+        $('#'+$id).toggleClass('active')
+    })
+</script>
 
 {% block ajaxjs %}
 {% endblock %}

@@ -4,6 +4,11 @@ from google_trans_new import google_translator
 
 
 def index(request, path):
+    if request.GET:
+        cid = request.GET['id']
+        classy = Advertise.objects.get(id=cid)
+        classy.views += 1
+        classy.save()
     translator = google_translator()
     issue = int(Settings.objects.filter(id=1).values('svalue')[0]['svalue'])
     tClassies = Advertise.objects.filter(active=1, advertise_template_id__in=[1, 2, 7], end_issue__gte=issue, newspaper_content_en=None).order_by(

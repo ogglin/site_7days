@@ -60,6 +60,10 @@ details > summary:hover {
   color: var(--accent);
 }
 
+section {
+  padding: 0 0.3em 0 0;
+}
+
 main {
   display: grid;
   grid-template-columns: 20em 1fr;
@@ -90,6 +94,37 @@ main {
 .btn_link span {
   font-size: 2em;
   line-height: 1.2em;
+}
+
+.cl_item {
+  margin: 0 0 1em 0;
+  padding: 0.5em;
+  box-shadow: 0 0 0.3em 0.1em rgba(25, 25, 25, 0.25);
+}
+.cl_item .date {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 0.5em 0;
+}
+.cl_item .date span {
+  display: flex;
+  align-items: center;
+}
+.cl_item .classy-text {
+  font-size: 1.2em;
+  line-height: 1.4em;
+  margin: 0;
+}
+.cl_item .classy-text span {
+  color: var(--link);
+  cursor: pointer;
+}
+.cl_item .classy-text a {
+  display: none;
+}
+.cl_item .classy-text a.active {
+  display: inline;
 }
 
 header {
