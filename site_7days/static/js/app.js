@@ -1,3 +1,4 @@
+console.log(JSON.parse(document.getElementById('classysData').textContent))
 let data = {
     categories: JSON.parse(document.getElementById('categoriesData').textContent),
     all_classys: JSON.parse(document.getElementById('classysData').textContent),
@@ -16,9 +17,9 @@ let data = {
                             перезвонит Вам в течение ближайшего рабочего дня и примет оплату.
                         </li>
                         <li><strong>СМС: </strong>
-                            Отправьте объявление текстовым сообщением на номер 312-999-0609, в тексте укажите количество 
-                            выходов (сколько недель публиковать объявление) и контактный телефон. 
-                            Сотрудник редакции перезвонит вам в течение ближайшего рабочего дня и примет оплату.         
+                            Отправьте объявление текстовым сообщением на номер 312-999-0609, в тексте укажите количество
+                            выходов (сколько недель публиковать объявление) и контактный телефон.
+                            Сотрудник редакции перезвонит вам в течение ближайшего рабочего дня и примет оплату.
                         </li>
                         <li><strong>Электронная почта: </strong>
                             Отправьте объявление по ЭЛЕКТРОННОЙ ПОЧТЕ на info@ethnicmedia.us, укажите количество выходов
@@ -32,8 +33,8 @@ let data = {
                         </li>
                         <li><a href="https://play.google.com/store/apps/details?id=app.newspaper7days" target="_blank">
                             <strong>Приложение для Android: </strong></a>
-                            В разделе Подать объявление заполните все поля.  Укажите количество выходов 
-                            (сколько недель публиковать объявление) и контактный телефон. Сотрудник редакции 
+                            В разделе Подать объявление заполните все поля.  Укажите количество выходов
+                            (сколько недель публиковать объявление) и контактный телефон. Сотрудник редакции
                             перезвонит вам в течение ближайшего рабочего дня и примет оплату.
                         </li>
                     </ol>
@@ -48,7 +49,7 @@ let data = {
                         <li>Фотография в объявлении: $5.</li>
                         <li>Объявление в рамке: $5 за модуль (1”х1,5”)</li>
                     </ul>
-                    <h4>Поздравление с праздником (день рождения, юбилей, свадьба) в рамке (текст и фотография) - 
+                    <h4>Поздравление с праздником (день рождения, юбилей, свадьба) в рамке (текст и фотография) -
                         от $10, в зависимости от размера объявления. Некрологи, соболезнования (текст и фотография),
                         публикуются БЕСПЛАТНО</h4>
                 </details>`,
@@ -58,29 +59,29 @@ let data = {
                     <h4>Объявления можно подавать и оплачивать любым из следующих способов:</h4>
                     <ol>
                         <li><strong>Coupon: </strong>
-                            Fill out a coupon from the 7 Days newspaper, put it in an envelope along with a check or a 
-                            money order in favor of Ethnic Media and mail it to - Ethnic Media, 25 Telser, 
+                            Fill out a coupon from the 7 Days newspaper, put it in an envelope along with a check or a
+                            money order in favor of Ethnic Media and mail it to - Ethnic Media, 25 Telser,
                             P.O. Box 261, Lake Zurich, IL 60047
                         </li>
                         <li><strong>Email: </strong>
-                            Email the text of your ad to info@ethnicmedia.us, specify the number of issues 
-                            (how many weeks to publish your ad) and your contact phone number. One of out 
-                            representatives will call you back within the next business day and accept payment.         
+                            Email the text of your ad to info@ethnicmedia.us, specify the number of issues
+                            (how many weeks to publish your ad) and your contact phone number. One of out
+                            representatives will call you back within the next business day and accept payment.
                         </li>
                         <li><strong>Text message: </strong>
-                            Send the text of your ad as a text message to 312-999-0609, specify the number of issues 
-                            (how many weeks to publish your ad) and your contact phone number. One of out 
+                            Send the text of your ad as a text message to 312-999-0609, specify the number of issues
+                            (how many weeks to publish your ad) and your contact phone number. One of out
                             representatives will call you back within the next business day and accept payment.
                         </li>
                         <li><strong>Fax: </strong>
-                            Fax the text of your ad to 866-710-0220, specify the number of issues (how many weeks to 
-                            publish your ad) and your contact phone number. One of out representatives will call you 
+                            Fax the text of your ad to 866-710-0220, specify the number of issues (how many weeks to
+                            publish your ad) and your contact phone number. One of out representatives will call you
                             back within the next business day and accept payment.
                         </li>
                         <li><a href="https://play.google.com/store/apps/details?id=app.newspaper7days" target="_blank">
                             <strong>Android app: </strong></a>
-                            In Submit your ad, fill in all the fields. Specify the number of issues (how many weeks to 
-                            publish your ad) and your contact phone number. One of out representatives will call you 
+                            In Submit your ad, fill in all the fields. Specify the number of issues (how many weeks to
+                            publish your ad) and your contact phone number. One of out representatives will call you
                             back within the next business day and accept payment.
                         </li>
                     </ol>
@@ -89,14 +90,14 @@ let data = {
                         <li>The price of an ad in 1 issue of the newspaper is 50¢ per 1 word.</li>
                         <li>Phone number counts as 1 word.</li>
                         <li>Words in <strong>bold</strong> or CAPITAL letters are 60¢ per 1 word.</li>
-                        <li>If you want to place your ad in more than one issue, multiply the amount by the 
+                        <li>If you want to place your ad in more than one issue, multiply the amount by the
                             number of publications.
                         </li>
                         <li>Photo in ad: $5.</li>
                         <li>Framed ad: $5 per module (1 "x1.5")</li>
                     </ul>
-                    <h4>Congratulations (birthday, anniversary, wedding) in a frame (text and photo) - from $10, 
-                        depending on the size of the ad. Obituaries, condolences (text and photo) are 
+                    <h4>Congratulations (birthday, anniversary, wedding) in a frame (text and photo) - from $10,
+                        depending on the size of the ad. Obituaries, condolences (text and photo) are
                         published for FREE</h4>
                 </details>`
 }
@@ -106,7 +107,7 @@ const app = Vue.createApp({
         const cats = []
         data.categories.forEach(cat => {
             data.all_classys.forEach(cl => {
-                if (cat.id === cl.categories_id) {
+                if (cat.id === cl[1]) {
                     if (cats.indexOf(cat) < 0) {
                         cats.push(cat)
                     }
@@ -159,7 +160,7 @@ const app = Vue.createApp({
 
             } else {
                 this.all_classys.forEach(el => {
-                    if (el['categories_id'] === id) {
+                    if (el[1] === id) {
                         clArr.push(el)
                     }
                 })

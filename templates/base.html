@@ -111,13 +111,14 @@
             <h1 v-if="lang == 'en'">Сlassifieds <small>{{ categoryName }}: {{ classys.length }}</small></h1>
             <div v-html="clHead"></div>
             <hr>
-            <div v-for="classy in classys" :class="['cl_item', classy.categories_id]" :id="'cl_' + classy.id">
+            <div v-for="classy in classys" :class="['cl_item', classy[1], classy[6]]" :id="'cl_' + classy[0]">
+                <span class="material-icons hot">local_fire_department</span>
                 <div class="date">
-                    <span><span class="material-icons">date_range</span>{{ formatDate(classy.created) }}</span>
-                    <span><span class="material-icons">visibility</span>{{ classy.views }}</span>
+                    <span><span class="material-icons">date_range</span>{{ formatDate(classy[5]) }}</span>
+                    <span class="views"><span class="material-icons">visibility</span>{{ classy[4] }}</span>
                 </div>
-                <p v-if="lang == 'ru'" class="classy-text">{{ classy.newspaper_content }}</p>
-                <p v-if="lang == 'en'" class="classy-text">{{ classy.newspaper_content_en }}</p>
+                <p v-if="lang == 'ru'" class="classy-text">{{ classy[2] }}</p>
+                <p v-if="lang == 'en'" class="classy-text">{{ classy[3] }}</p>
             </div>
             <hr>
         </section>

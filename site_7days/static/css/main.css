@@ -198,6 +198,41 @@ aside .categories a:hover, aside .categories a.active, aside .categories button:
     display: none;
   }
 }
+.serv1 {
+  border: 1px solid #080808;
+}
+
+.serv2 {
+  font-weight: 600;
+}
+
+.serv5 {
+  background-color: #fdf4ee;
+}
+
+.hot {
+  color: #e8130c;
+  position: absolute;
+  display: none;
+  top: 0;
+  right: 0;
+  font-size: 38px;
+}
+
+.serv6 {
+  position: relative;
+}
+.serv6 .hot {
+  display: block;
+}
+.serv6 span.views {
+  margin-right: 40px;
+}
+
+.serv8 {
+  text-transform: uppercase;
+}
+
 @media all and (max-width: 800px) {
   .wrap_grid {
     min-height: 100vh;

@@ -1,6 +1,16 @@
+from django.db.models import Manager
 from django.shortcuts import render
-from main.models import Categories, Advertise, Settings
+from main.models import Categories, Advertise, Settings, ServicesHasAdvertise
 from google_trans_new import google_translator
+from django.db import connection
+
+
+def custom_sql(q):
+    with connection.cursor() as cursor:
+        cursor.execute(q)
+        row = cursor.fetchall()
+
+    return row
 
 
 def index(request, path):
@@ -11,8 +21,10 @@ def index(request, path):
         classy.save()
     translator = google_translator()
     issue = int(Settings.objects.filter(id=1).values('svalue')[0]['svalue'])
-    tClassies = Advertise.objects.filter(active=1, advertise_template_id__in=[1, 2, 7], end_issue__gte=issue, newspaper_content_en=None).order_by(
-            '-id')
+
+    tClassies = Advertise.objects.filter(active=1, advertise_template_id__in=[1, 2, 7], end_issue__gte=issue,
+                                         newspaper_content_en=None).order_by(
+        '-id')
     for tClassy in tClassies:
         translate_text = translator.translate(tClassy.newspaper_content, lang_tgt='en')
         tClassy.newspaper_content_en = translate_text
@@ -22,8 +34,14 @@ def index(request, path):
         lang = 'en'
     else:
         lang = 'ru'
-    classys = list(Advertise.objects.filter(active=1, advertise_template_id__in=[1, 2, 7], end_issue__gte=issue).order_by(
-            '-id').values())
+    classys = custom_sql(f"""SELECT advertise.id, advertise.categories_id, advertise.newspaper_content, 
+        advertise.newspaper_content_en, advertise.views, advertise.created, 
+        GROUP_CONCAT('serv', services.id  SEPARATOR ' ') as services FROM advertise
+        LEFT JOIN services_has_advertise sha ON sha.advertise_id = advertise.id
+        LEFT JOIN services ON services.id = sha.services_id
+        WHERE advertise.active = 1 and advertise.advertise_template_id in (1, 2, 7) and advertise.end_issue >= {issue} 
+        GROUP BY advertise.id
+        ORDER BY advertise.id DESC""")
     base_context = {
         'categories': categories,
         'classys': classys,

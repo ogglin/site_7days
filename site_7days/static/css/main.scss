@@ -115,6 +115,47 @@ main {
 @import "aside.scss";
 @import "footer.scss";
 
+//Объявление в рамке
+.serv1 {
+  border: 1px solid #080808;
+}
+//Полужирным
+.serv2 {
+  font-weight: 600;
+}
+//Original text
+.serv3 {}
+//on_top
+.serv4 {}
+//background
+.serv5 {
+  background-color: #fdf4ee;
+}
+//hot
+.hot {
+  color: #e8130c;
+  position: absolute;
+  display: none;
+  top: 0;
+  right: 0;
+  font-size: 38px;
+}
+.serv6 {
+  position: relative;
+  .hot {
+    display: block;
+  }
+  span.views {
+    margin-right: 40px;
+  }
+}
+//ad_to_facebook
+.serv7 {}
+//Заглавными
+.serv8 {
+  text-transform: uppercase;
+}
+
 @media all and (max-width: 800px) {
   .wrap_grid {
     min-height: 100vh;
