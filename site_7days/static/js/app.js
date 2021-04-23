@@ -172,6 +172,7 @@ const app = Vue.createApp({
                 this.category_active = id
                 this.categoryName = name
             }
+            this.showCats();
         },
         showCats() {
             if (document.getElementById('aside').className === 'active') {

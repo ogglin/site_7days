@@ -41,7 +41,15 @@ def index(request, path):
         LEFT JOIN services ON services.id = sha.services_id
         WHERE advertise.active = 1 and advertise.advertise_template_id in (1, 2, 7) and advertise.end_issue >= {issue} 
         GROUP BY advertise.id
-        ORDER BY advertise.id DESC""")
+        ORDER BY case when services.id = 4 then 0 when services.id = 6 then 1 else 3 end, advertise.id DESC""")
+    pclassy = []
+    sclassy = []
+    for cl in classys:
+        if cl[6]:
+            pclassy.append(cl)
+        else:
+            sclassy.append(cl)
+    classys = pclassy + sclassy
     base_context = {
         'categories': categories,
         'classys': classys,
