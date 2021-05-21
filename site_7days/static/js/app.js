@@ -1,4 +1,4 @@
-console.log(JSON.parse(document.getElementById('classysData').textContent))
+// console.log(JSON.parse(document.getElementById('classysData').textContent))
 let data = {
     categories: JSON.parse(document.getElementById('categoriesData').textContent),
     all_classys: JSON.parse(document.getElementById('classysData').textContent),
@@ -128,7 +128,7 @@ const app = Vue.createApp({
     mounted: function () {
         this.$nextTick(function () {
             ads = document.getElementsByClassName('classy-text')
-            const regex = /\(?[- _]*(\d{3}[- _]*\)?([- _]*\d){7}|\d\d[- _]*\d\d[- _]*\)?([- _]*\d){6})/g;
+            const regex = /\(?[- _ .]*(\d{3}[- _ .]*\)?([- _ .]*\d){7}|\d\d[- _ .]*\d\d[- _ .]*\)?([- _ .]*\d){6})/g;
             for (let i = 0; i < ads.length; i++) {
                 phones = ads[i].innerHTML.match(regex)
                 if (phones) {
@@ -137,6 +137,8 @@ const app = Vue.createApp({
                         $a = '<span class="showTel" role="cls_phone' + (i + j) + '"> показать телефон </span><a href="tel:' + phones[j] + '" id="cls_phone' + (i + j) + '">' + phones[j] + '</a>'
                         $html = $html.replace(phones[j], $a)
                     }
+                } else {
+                    $html = ads[i].innerHTML
                 }
                 ads[i].innerHTML = $html
             }
