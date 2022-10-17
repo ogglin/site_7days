@@ -13,7 +13,7 @@ log.addHandler(logging.NullHandler())
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 URLS_SUFFIX = [re.search('translate.google.(.*)', url.strip()).group(1) for url in DEFAULT_SERVICE_URLS]
-URL_SUFFIX_DEFAULT = 'cn'
+URL_SUFFIX_DEFAULT = 'en'
 
 
 class google_new_transError(Exception):
@@ -87,12 +87,13 @@ class google_translator:
 
     '''
 
-    def __init__(self, url_suffix="cn", timeout=5, proxies=None):
+    def __init__(self, url_suffix="com", timeout=5, proxies=None):
         self.proxies = proxies
-        if url_suffix not in URLS_SUFFIX:
-            self.url_suffix = URL_SUFFIX_DEFAULT
-        else:
-            self.url_suffix = url_suffix
+        self.url_suffix = url_suffix
+        # if url_suffix not in URLS_SUFFIX:
+        #     self.url_suffix = URL_SUFFIX_DEFAULT
+        # else:
+        #     self.url_suffix = url_suffix
         url_base = "https://translate.google.{}".format(self.url_suffix)
         self.url = url_base + "/_/TranslateWebserverUi/data/batchexecute"
         self.timeout = timeout
@@ -148,7 +149,7 @@ class google_translator:
                 decoded_line = line.decode('utf-8')
                 if "MkEWBc" in decoded_line:
                     try:
-                        response = (decoded_line + ']')
+                        response = decoded_line
                         response = json.loads(response)
                         response = list(response)
                         response = json.loads(response[0][2])
@@ -157,12 +158,12 @@ class google_translator:
                         if len(response) == 1:
                             if len(response[0]) > 5:
                                 sentences = response[0][5]
-                            else: ## only url
+                            else:  ## only url
                                 sentences = response[0][0]
                                 if pronounce == False:
                                     return sentences
                                 elif pronounce == True:
-                                    return [sentences,None,None]
+                                    return [sentences, None, None]
                             translate_text = ""
                             for sentence in sentences:
                                 sentence = sentence[0]

@@ -1,7 +1,7 @@
 from django.db.models import Manager
 from django.shortcuts import render
 from main.models import Categories, Advertise, Settings, ServicesHasAdvertise
-from google_trans_new import google_translator
+from google_translate_new import google_translator
 from django.db import connection
 
 
